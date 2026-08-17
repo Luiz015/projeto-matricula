@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sessão</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div class="container-login">
+
+        <div class="card-login">
+        
+            <h1>
+                INICIAR SESSÃO
+            </h1>
+
+            <p class="texto-obrigatorio">
+                (*) Campos obrigatórios
+            </p>
+
+            <form
+                class="form-login"
+                th:action="@{/login}"
+                method="post">
+
+                <div class="campo">
+
+                    <label>
+                        Prontuario*
+                    </label>
+
+                    <input
+                        type="text"
+                        name="prontuario"
+                        required>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>
+                        Senha*
+                    </label>
+
+                    <input
+                        type="password"
+                        name="senha"
+                        required>
+
+                </div>
+
+                <div class="mensagem-erro">
+
+                    <p
+                        th:if="${mensagem}"
+                        th:text="${mensagem}">
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn-login"
+                    type="submit">
+
+                    ENTRAR
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <header class="cabecalho">
+            <div class="logo">
+                <a href="/">
+                    <img src="/img/logo.png"
+                     alt="logo ifsp"
+                     class="logo-img">
+                     
+                </a>
+            </div>
+
+            <nav class="menu">
+                <div th:if="${usuario==null}">
+                    <a
+                        class="menu-link"
+                        href="/login">
+
+                        Login
+
+                    </a>
+                </div>
+            </nav>
+        </header>
+        
+    </div>
+</body>
+</html>
