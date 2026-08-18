@@ -36,6 +36,15 @@ public class ProfessorController {
 
 
 
+    @GetMapping("/home-prof")
+    public String homeProf(Model model) {
+        List<Curso> cursos = cursoRepository.findAll();
+        
+
+        model.addAttribute("cursos", cursos);
+
+        return "home-prof";
+    }
     @GetMapping("/curso")
     public String formCurso(){
         return "formCurso";
