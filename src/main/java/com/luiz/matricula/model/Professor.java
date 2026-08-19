@@ -22,11 +22,7 @@ import lombok.Setter;
 @Table(name = "professor")
 public class Professor extends Pessoa {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
+    
     @Column(name = "prontuario")
     private String prontuario;
 
