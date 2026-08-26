@@ -1,5 +1,6 @@
 package com.luiz.matricula.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,11 @@ import jakarta.servlet.http.HttpSession;
 public class HomeController {
 
     String msg;
+
+    @Autowired
     private AlunoRepository alunoRepository;
+
+    @Autowired
     private ProfessorRepository professorRepository;
 
     @GetMapping("/")
@@ -49,7 +54,7 @@ public class HomeController {
         if(professorBanco!=null){
             if(professorBanco.getSenha().equals(senha)){
                 httpSession.setAttribute("professor", professorBanco);
-                return "professor-home";
+                return "redirect:/home-prof";
             }
             model.addAttribute("mensagem", "Senha Incorreta");
             return "login";

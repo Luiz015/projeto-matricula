@@ -22,6 +22,7 @@
         <main>
             <h1>Cursos</h1>
             <div class="cursos">
+                
                 <div class="card-curso" th:each="curso : ${cursos}">
                     <h2 th:text="${curso.nome}"></h2>
                     
