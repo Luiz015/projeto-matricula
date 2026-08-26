@@ -3,34 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Início</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
+
     <div class="container">
+
         <header class="cabecalho">
+
             <div class="logo">
                 <a href="/">
                     <img src="/img/logo.png"
-                     alt="logo ifsp"
-                     class="logo-img">
-                     
+                         alt="Logo IFSP"
+                         class="logo-img">
                 </a>
             </div>
 
-            <nav class="menu">
-                <div th:if="${usuario==null}">
-                    <a
-                        class="menu-link"
-                        href="/login">
-
-                        Login
-
-                    </a>
-                </div>
+            <nav>
+                <a href="/login">Login</a>
             </nav>
+
         </header>
-        
+
+
+        <main>
+
+            <section class="boas-vindas">
+                <h1>Bem-vindo ao Sistema Acadêmico</h1>
+
+                <p>
+                    Consulte informações sobre cursos, disciplinas,
+                    ofertas e atividades acadêmicas.
+                </p>
+            </section>
+
+
+            <section class="noticias">
+
+                <h2>Notícias e Avisos</h2>
+
+                <div class="noticias-container">
+
+                    <article class="noticia">
+                        <h3>📚 Inscrições para atividades extracurriculares</h3>
+
+                        <p>
+                            Já estão disponíveis as inscrições para as
+                            disciplinas e atividades extracurriculares
+                            deste semestre.
+                        </p>
+                    </article>
+
+
+                    <article class="noticia">
+                        <h3>💻 Novo laboratório de informática</h3>
+
+                        <p>
+                            A escola inaugurou um novo laboratório de
+                            informática para aulas práticas, projetos
+                            e atividades dos estudantes.
+                        </p>
+                    </article>
+
+
+                    <article class="noticia">
+                        <h3>🎓 Semana Acadêmica 2026</h3>
+
+                        <p>
+                            Em breve será realizada a Semana Acadêmica,
+                            com palestras, oficinas e atividades voltadas
+                            à tecnologia e educação.
+                        </p>
+                    </article>
+
+
+                    <article class="noticia">
+                        <h3>📅 Calendário acadêmico atualizado</h3>
+
+                        <p>
+                            O calendário acadêmico do segundo semestre
+                            já está disponível. Confira as principais
+                            datas e eventos escolares.
+                        </p>
+                    </article>
+
+
+                    <article class="noticia">
+                        <h3>🏆 Feira de Ciências e Tecnologia</h3>
+
+                        <p>
+                            Estão abertas as inscrições para projetos
+                            da Feira de Ciências e Tecnologia.
+                        </p>
+                    </article>
+
+
+                    <article class="noticia">
+                        <h3>🔔 Aviso aos estudantes</h3>
+
+                        <p>
+                            Acompanhe regularmente o sistema para consultar
+                            novas disciplinas, ofertas e comunicados.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
     </div>
+
 </body>
 </html>

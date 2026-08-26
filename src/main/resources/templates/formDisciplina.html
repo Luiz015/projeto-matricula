@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Disciplina</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <h1>Cadastrar Disciplina</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}"></p>
+
+    <form th:action="@{/disciplina}" th:object="${disciplina}" method="post">
+
+        <label for="nome">Nome da disciplina:</label>
+        <input type="text" id="nome" th:field="*{nome}" required>
+
+        <br><br>
+
+        <label for="cargaHoraria">Carga horária:</label>
+        <input type="text" id="cargaHoraria" th:field="*{cargaHoraria}" required>
+
+        <br><br>
+
+        <label for="area">Área:</label>
+        <input type="text" id="area" th:field="*{area}" required>
+
+        <br><br>
+
+        <label for="curso">Curso:</label>
+        <select id="curso" th:field="*{curso}" required>
+
+            <option value="">Selecione um curso</option>
+
+            <option th:each="curso : ${cursos}"
+                    th:value="${curso.idCurso}"
+                    th:text="${curso.nome}">
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">Cadastrar Disciplina</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/home-prof}">Voltar</a>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Oferta</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <h1>Atualizar Oferta</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}"></p>
+
+    <form th:action="@{/oferta/atualizar}"
+          th:object="${oferta}"
+          method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label for="professor">Professor:</label>
+        <select id="professor" th:field="*{professor}" required>
+
+            <option th:each="professor : ${professores}"
+                    th:value="${professor.id}"
+                    th:text="${professor.nome}">
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <label for="disciplina">Disciplina:</label>
+        <select id="disciplina" th:field="*{disciplina}" required>
+
+            <option th:each="disciplina : ${disciplinas}"
+                    th:value="${disciplina.idDisciplina}"
+                    th:text="${disciplina.nome}">
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">Atualizar Oferta</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/home-prof}">Voltar</a>
+
+</body>
+</html>

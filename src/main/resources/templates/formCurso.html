@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Curso</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <h1>Cadastrar Curso</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}"></p>
+
+    <form th:action="@{/curso}" method="post">
+
+        <label for="nome">Nome do curso:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <br><br>
+
+        <label for="duracao">Duração:</label>
+        <input type="text" id="duracao" name="duracao" placeholder="Ex: 4 anos" required>
+
+        <br><br>
+
+        <label for="cargaHoraria">Carga horária:</label>
+        <input type="text" id="cargaHoraria" name="cargaHoraria" placeholder="Ex: 3200 horas" required>
+
+        <br><br>
+
+        <button type="submit">Cadastrar Curso</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/home-prof}">Voltar</a>
+
+</body>
+</html>

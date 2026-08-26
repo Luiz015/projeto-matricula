@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Aluno</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <h1>Cadastrar Aluno</h1>
+
+    <p th:text="${mensagem}"></p>
+
+    <form th:action="@{/aluno}"
+          th:object="${aluno}"
+          method="post">
+
+        <label>Nome:</label>
+        <input type="text"
+               th:field="*{nome}"
+               required>
+
+        <br><br>
+
+        <label>CPF:</label>
+        <input type="text"
+               th:field="*{cpf}"
+               required>
+
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email"
+               th:field="*{email}"
+               required>
+
+        <br><br>
+
+        <label>Data de nascimento:</label>
+        <input type="date"
+               th:field="*{dtNascimento}"
+               required>
+
+        <br><br>
+
+        <label>Prontuário:</label>
+        <input type="text"
+               th:field="*{prontuario}"
+               required>
+
+        <br><br>
+
+        <label>Senha:</label>
+        <input type="password"
+               th:field="*{senha}"
+               required>
+
+        <br><br>
+
+        <button type="submit">
+            Cadastrar
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/alunos">Voltar</a>
+
+</body>
+
+</html>

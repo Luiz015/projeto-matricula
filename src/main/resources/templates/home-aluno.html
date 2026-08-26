@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Aluno</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <header>
+        <h1>Área do Aluno</h1>
+
+        <a href="/">Sair</a>
+    </header>
+
+    <main>
+
+        <h2>Ofertas de Disciplinas</h2>
+
+        <div th:if="${ofertas == null or ofertas.isEmpty()}">
+            <p>Não há ofertas de disciplinas disponíveis no momento.</p>
+        </div>
+
+        <div th:each="oferta : ${ofertas}">
+
+            <div class="card-oferta">
+
+                <h3 th:text="${oferta.disciplina.nome}">
+                    Nome da disciplina
+                </h3>
+
+                <p>
+                    Área:
+                    <span th:text="${oferta.disciplina.area}">
+                        Área
+                    </span>
+                </p>
+
+                <p>
+                    Carga Horária:
+                    <span th:text="${oferta.disciplina.cargaHoraria}">
+                        Carga horária
+                    </span>
+                </p>
+
+                <p>
+                    Professor:
+                    <span th:text="${oferta.professor.nome}">
+                        Professor
+                    </span>
+                </p>
+
+                <form th:action="@{/matricula}" method="post">
+
+                    <input type="hidden"
+                           name="idOfertaDisc"
+                           th:value="${oferta.id}">
+
+                    <button type="submit">
+                        Matricular-se
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

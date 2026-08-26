@@ -1,8 +1,332 @@
-.cabecalho{
-    background-color: #ffffff;
-    padding: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: #1769aa;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cabecalho {
+    height: 80px;
+    background: #ffffff;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+}
+
+main {
+    padding-bottom: 50px;
+}
+
+h1 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+nav {
+    display: flex;
     flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+nav a {
+    background: #1769aa;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 7px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    background: #125485;
+    text-decoration: none;
+}
+
+.cursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.card-curso,
+.card-aluno {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-curso h2,
+.card-aluno h2 {
+    color: #1769aa;
+}
+
+.card-curso p,
+.card-aluno p {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.card-curso a,
+.card-aluno a {
+    display: inline-block;
+    margin-top: 8px;
+    margin-right: 10px;
+}
+
+.card-curso form,
+.card-aluno form {
+    display: inline;
+}
+
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 18px;
+    background: #1769aa;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #125485;
+}
+
+.card-curso form button,
+.card-aluno form button {
+    background: #c0392b;
+}
+
+.card-curso form button:hover,
+.card-aluno form button:hover {
+    background: #962d22;
+}
+
+.alunos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+form:not(.form-login) {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+form:not(.form-login) label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #444;
+}
+
+form:not(.form-login) input,
+form:not(.form-login) select {
+    width: 100%;
+    padding: 11px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    background: white;
+}
+
+form:not(.form-login) input:focus,
+form:not(.form-login) select:focus {
+    outline: none;
+    border-color: #1769aa;
+}
+
+form:not(.form-login) button {
+    margin-top: 5px;
+}
+
+p[th\\:text] {
+    margin-bottom: 20px;
+}
+
+.boas-vindas {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.boas-vindas h1 {
+    color: #1769aa;
+    margin-bottom: 12px;
+}
+
+.boas-vindas p {
+    color: #666;
+    font-size: 17px;
+}
+
+.noticias h2 {
+    margin-bottom: 20px;
+}
+
+.noticias-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.noticia {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #1769aa;
+}
+
+.noticia h3 {
+    color: #333;
+    line-height: 1.4;
+}
+
+.noticia p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.container-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-login {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-login h1 {
+    text-align: center;
+    color: #1769aa;
+    margin-bottom: 10px;
+}
+
+.texto-obrigatorio {
+    text-align: center;
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #1769aa;
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    font-size: 15px;
+}
+
+.mensagem-erro {
+    color: #c0392b;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        padding: 10px 15px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .card-login {
+        padding: 25px;
+    }
+
+    form:not(.form-login) {
+        padding: 20px;
+    }
+
+    .boas-vindas {
+        padding: 25px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        text-align: center;
+    }
 }

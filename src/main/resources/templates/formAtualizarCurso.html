@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Curso</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <h1>Atualizar Curso</h1>
+
+    <p th:if="${mensagem}" th:text="${mensagem}"></p>
+
+    <form th:action="@{/curso/atualizar}" th:object="${curso}" method="post">
+
+        <input type="hidden" th:field="*{idCurso}">
+
+        <label for="nome">Nome do curso:</label>
+        <input type="text" id="nome" th:field="*{nome}" required>
+
+        <br><br>
+
+        <label for="duracao">Duração:</label>
+        <input type="text" id="duracao" th:field="*{duracao}" required>
+
+        <br><br>
+
+        <label for="cargaHoraria">Carga horária:</label>
+        <input type="text" id="cargaHoraria" th:field="*{cargaHoraria}" required>
+
+        <br><br>
+
+        <button type="submit">Atualizar Curso</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/home-prof}">Voltar</a>
+
+</body>
+</html>

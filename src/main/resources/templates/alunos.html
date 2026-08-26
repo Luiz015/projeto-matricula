@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <h1>Alunos</h1>
+
+    <a href="/aluno">Cadastrar novo aluno</a>
+
+    <br><br>
+
+    <div class="alunos">
+
+        <div class="card-aluno" th:each="aluno : ${alunos}">
+
+            <h2 th:text="${aluno.nome}"></h2>
+
+            <p>
+                Prontuário:
+                <span th:text="${aluno.prontuario}"></span>
+            </p>
+
+            <p>
+                CPF:
+                <span th:text="${aluno.cpf}"></span>
+            </p>
+
+            <p>
+                Email:
+                <span th:text="${aluno.email}"></span>
+            </p>
+
+            <p>
+                Data de nascimento:
+                <span th:text="${aluno.dtNascimento}"></span>
+            </p>
+
+            <a th:href="@{/aluno/atualizar/{id}(id=${aluno.id})}">
+                Atualizar
+            </a>
+
+            <form th:action="@{/aluno/excluir/{id}(id=${aluno.id})}"
+                  method="post">
+
+                <button type="submit">
+                    Excluir
+                </button>
+
+            </form>
+
+            <hr>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

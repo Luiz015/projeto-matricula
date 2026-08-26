@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home Professor</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
+
     <div class="container">
+
         <header class="cabecalho">
             <div class="logo">
                 <a href="/">
                     <img src="/img/logo.png"
-                     alt="logo ifsp"
-                     class="logo-img">
-                     
+                         alt="logo ifsp"
+                         class="logo-img">
                 </a>
             </div>
-
         </header>
 
         <main>
+
             <h1>Cursos</h1>
+
+            <!-- Links para os cadastros -->
+            <nav>
+                <a href="/curso">Cadastrar Curso</a>
+                <a href="/disciplina">Cadastrar Disciplina</a>
+                <a href="/oferta">Cadastrar Oferta</a>
+                <a href="/aluno">Cadastrar Aluno</a>
+            </nav>
+
             <div class="cursos">
-                
+
                 <div class="card-curso" th:each="curso : ${cursos}">
+
                     <h2 th:text="${curso.nome}"></h2>
-                    
+
                     <p>
-                        Carga Horária
-                        <span th:text="${curso.cargaHoraria}"> </span>
+                        Carga Horária:
+                        <span th:text="${curso.cargaHoraria}"></span>
                     </p>
 
                     <p>
@@ -36,13 +49,33 @@
                         <span th:text="${curso.duracao}"></span>
                     </p>
 
+                    <!-- Ver curso -->
                     <a th:href="@{/curso/{id}(id=${curso.idCurso})}">
                         Ver curso
                     </a>
+
+                    <!-- Atualizar curso -->
+                    <a th:href="@{/curso/atualizar/{id}(id=${curso.idCurso})}">
+                        Atualizar
+                    </a>
+
+                    <!-- Excluir curso -->
+                    <form th:action="@{/curso/excluir/{id}(id=${curso.idCurso})}"
+                          method="post">
+
+                        <button type="submit">
+                            Excluir
+                        </button>
+
+                    </form>
+
                 </div>
+
             </div>
+
         </main>
-        
+
     </div>
+
 </body>
 </html>

@@ -109,7 +109,16 @@ public class ProfessorController {
     }
 
     @GetMapping("/oferta")
-    public String formOferta() {
+    public String formOferta(Model model) {
+
+        model.addAttribute("oferta", new OfertaDisc());
+
+        List<Professor> professores = professorRepository.findAll();
+        List<Disciplina> disciplinas = disciplinaRepository.findAll();
+
+        model.addAttribute("professores", professores);
+        model.addAttribute("disciplinas", disciplinas);
+
         return "formOferta";
     }
 
@@ -173,7 +182,8 @@ public class ProfessorController {
     }
 
     @GetMapping("/disciplina")
-    public String formDisciplina() {
+    public String formDisciplina(Model model) {
+        model.addAttribute("disciplina", new Disciplina());
         return "formDisciplina";
     }
 
@@ -191,12 +201,19 @@ public class ProfessorController {
 
     @GetMapping("/disciplina/atualizar/{id}")
     public String formAtualizarDisc(@PathVariable Long id, Model model) {
+
         Optional<Disciplina> discBanco = disciplinaRepository.findById(id);
+
         if (discBanco.isEmpty()) {
-            model.addAttribute("mensagem", "Disciplina não encontrado");
+            model.addAttribute("mensagem", "Disciplina não encontrada");
             return "redirect:/home-prof";
         }
+
+        List<Curso> cursos = cursoRepository.findAll();
+
         model.addAttribute("disciplina", discBanco.get());
+        model.addAttribute("cursos", cursos);
+
         return "formAtualizaDisciplina";
     }
 
