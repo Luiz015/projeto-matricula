@@ -94,6 +94,20 @@ public class ProfessorController {
         return "redirect:/home-prof";
     }
 
+    @GetMapping("/curso/{id}")
+    public String verCurso(@PathVariable Long id, Model model) {
+        Optional<Curso> cursoBanco = cursoRepository.findById(id);
+
+        if (cursoBanco.isEmpty()) {
+            model.addAttribute("mensagem", "Curso não encontrado");
+            return "redirect:/home-prof";
+        }
+
+        model.addAttribute("curso", cursoBanco.get());
+
+        return "curso";
+    }
+
     @GetMapping("/oferta")
     public String formOferta() {
         return "formOferta";
@@ -108,7 +122,7 @@ public class ProfessorController {
 
         ofertaDiscRepository.save(oferta);
         model.addAttribute("oferta", oferta);
-       return "redirect:/home-prof";
+        return "redirect:/home-prof";
     }
 
     @GetMapping("/oferta/atualizar/{id}")
