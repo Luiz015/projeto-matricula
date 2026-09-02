@@ -66,7 +66,7 @@ public class AlunoController {
 
         model.addAttribute("aluno", alunoBanco.get());
 
-        return "formAtualizaAluno";
+        return "formAtualizarAluno";
     }
 
     

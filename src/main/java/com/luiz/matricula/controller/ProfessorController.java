@@ -68,7 +68,7 @@ public class ProfessorController {
             return "redirect:/home-prof";
         }
         model.addAttribute("curso", cursoBanco.get());
-        return "formAtualizaCurso";
+        return "formAtualizarCurso";
     }
 
     @PostMapping("/curso/atualizar")
