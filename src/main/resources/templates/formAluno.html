@@ -1,75 +1,80 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Aluno</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
 
-    <h1>Cadastrar Aluno</h1>
+    <div class="container">
 
-    <p th:text="${mensagem}"></p>
+        <header class="cabecalho">
+            <div class="logo">
+                <a href="/">
+                    <img th:src="@{/img/logo.png}"
+                         alt="Logo IFSP"
+                         class="logo-img">
+                </a>
+            </div>
 
-    <form th:action="@{/aluno}"
-          th:object="${aluno}"
-          method="post">
+            <nav>
+                <a th:href="@{/home-prof}">Voltar</a>
+            </nav>
+        </header>
 
-        <label>Nome:</label>
-        <input type="text"
-               th:field="*{nome}"
-               required>
+        <main>
 
-        <br><br>
+            <h1>Cadastrar Aluno</h1>
 
-        <label>CPF:</label>
-        <input type="text"
-               th:field="*{cpf}"
-               required>
+            <p th:if="${mensagem}" th:text="${mensagem}" class="mensagem"></p>
 
-        <br><br>
+            <form th:action="@{/aluno}"
+                  th:object="${aluno}"
+                  method="post">
 
-        <label>Email:</label>
-        <input type="email"
-               th:field="*{email}"
-               required>
+                <label>Nome:</label>
+                <input type="text"
+                       th:field="*{nome}"
+                       required>
 
-        <br><br>
+                <label>CPF:</label>
+                <input type="text"
+                       th:field="*{cpf}"
+                       required>
 
-        <label>Data de nascimento:</label>
-        <input type="date"
-               th:field="*{dtNascimento}"
-               required>
+                <label>Email:</label>
+                <input type="email"
+                       th:field="*{email}"
+                       required>
 
-        <br><br>
+                <label>Data de nascimento:</label>
+                <input type="date"
+                       th:field="*{dtNascimento}"
+                       required>
 
-        <label>Prontuário:</label>
-        <input type="text"
-               th:field="*{prontuario}"
-               required>
+                <label>Prontuário:</label>
+                <input type="text"
+                       th:field="*{prontuario}"
+                       required>
 
-        <br><br>
+                <label>Senha:</label>
+                <input type="password"
+                       th:field="*{senha}"
+                       required>
 
-        <label>Senha:</label>
-        <input type="password"
-               th:field="*{senha}"
-               required>
+                <button type="submit">
+                    Cadastrar
+                </button>
 
-        <br><br>
+            </form>
 
-        <button type="submit">
-            Cadastrar
-        </button>
+            <a href="/alunos" class="voltar-link">Voltar para lista</a>
 
-    </form>
+        </main>
 
-    <br>
-
-    <a href="/alunos">Voltar</a>
+    </div>
 
 </body>
-
 </html>

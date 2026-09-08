@@ -148,7 +148,38 @@ button:hover {
     gap: 22px;
 }
 
-form:not(.form-login) {
+.ofertas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+.card-oferta {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-oferta h3 {
+    color: #1769aa;
+    margin-bottom: 12px;
+}
+
+.card-oferta p {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+.card-oferta form {
+    display: inline;
+}
+
+.card-oferta form button {
+    margin-top: 8px;
+}
+
+form:not(.form-login):not(.form-inline) {
     width: 100%;
     max-width: 600px;
     background: white;
@@ -157,15 +188,15 @@ form:not(.form-login) {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
-form:not(.form-login) label {
+form:not(.form-login):not(.form-inline) label {
     display: block;
     margin-bottom: 7px;
     font-weight: bold;
     color: #444;
 }
 
-form:not(.form-login) input,
-form:not(.form-login) select {
+form:not(.form-login):not(.form-inline) input,
+form:not(.form-login):not(.form-inline) select {
     width: 100%;
     padding: 11px 12px;
     margin-bottom: 18px;
@@ -175,14 +206,28 @@ form:not(.form-login) select {
     background: white;
 }
 
-form:not(.form-login) input:focus,
-form:not(.form-login) select:focus {
+form:not(.form-login):not(.form-inline) input:focus,
+form:not(.form-login):not(.form-inline) select:focus {
     outline: none;
     border-color: #1769aa;
 }
 
-form:not(.form-login) button {
+form:not(.form-login):not(.form-inline) button {
     margin-top: 5px;
+}
+
+.mensagem {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: #e8f5e9;
+    border-left: 4px solid #43a047;
+    border-radius: 6px;
+    color: #2e7d32;
+}
+
+.voltar-link {
+    display: inline-block;
+    margin-top: 20px;
 }
 
 p[th\\:text] {
