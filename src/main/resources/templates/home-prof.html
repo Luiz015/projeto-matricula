@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +16,8 @@
         <header class="cabecalho">
             <div class="logo">
                 <a href="/">
-                    <img th:src="@{/img/logo.png}"
-                         alt="logo ifsp"
-                         class="logo-img">
+                    <img th:src="@{/img/logo.png}" alt="logo ifsp" class="logo-img">
                 </a>
-                
             </div>
         </header>
 
@@ -26,7 +25,6 @@
 
             <h1>Cursos</h1>
 
-            <!-- Links para os cadastros -->
             <nav>
                 <a href="/curso">Cadastrar Curso</a>
                 <a href="/disciplina">Cadastrar Disciplina</a>
@@ -50,20 +48,15 @@
                         <span th:text="${curso.duracao}"></span>
                     </p>
 
-                    <!-- Ver curso -->
                     <a th:href="@{/curso/{id}(id=${curso.idCurso})}">
                         Ver curso
                     </a>
 
-                    <!-- Atualizar curso -->
                     <a th:href="@{/curso/atualizar/{id}(id=${curso.idCurso})}">
                         Atualizar
                     </a>
 
-                    <!-- Excluir curso -->
-                    <form th:action="@{/curso/excluir/{id}(id=${curso.idCurso})}"
-                          method="post"
-                          class="form-inline">
+                    <form th:action="@{/curso/excluir/{id}(id=${curso.idCurso})}" method="post" class="form-inline">
 
                         <button type="submit">
                             Excluir
@@ -75,9 +68,62 @@
 
             </div>
 
+
+            <!-- OFERTAS DO PROFESSOR -->
+
+            <h1>Minhas Disciplinas</h1>
+
+            <div class="ofertas">
+
+                <div class="card-oferta" th:each="oferta : ${ofertas}">
+
+                    <h2 th:text="${oferta.disciplina.nome}">
+                        Nome da disciplina
+                    </h2>
+
+                    <p>
+                        Área:
+                        <span th:text="${oferta.disciplina.area}">
+                            Área
+                        </span>
+                    </p>
+
+                    <p>
+                        Carga Horária:
+                        <span th:text="${oferta.disciplina.cargaHoraria}">
+                            Carga horária
+                        </span>
+                    </p>
+
+                    <p>
+                        Curso:
+                        <span th:text="${oferta.disciplina.curso.nome}">
+                            Curso
+                        </span>
+                    </p>
+
+                    <a th:href="@{/oferta/atualizar/{id}(id=${oferta.id})}">
+                        Atualizar oferta
+                    </a>
+
+                    <a th:href="@{/oferta/{id}/alunos(id=${oferta.id})}">
+                        Ver alunos
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div th:if="${ofertas == null or ofertas.isEmpty()}">
+                <p>
+                    Você não possui disciplinas vinculadas no momento.
+                </p>
+            </div>
+
         </main>
 
     </div>
 
 </body>
+
 </html>

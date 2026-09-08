@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import jakarta.servlet.http.HttpSession;
 
 import com.luiz.matricula.model.Curso;
 import com.luiz.matricula.model.Disciplina;
@@ -35,10 +36,15 @@ public class ProfessorController {
     private ProfessorRepository professorRepository;
 
     @GetMapping("/home-prof")
-    public String homeProf(Model model) {
+    public String homeProf(Model model, HttpSession session) {
         List<Curso> cursos = cursoRepository.findAll();
 
+        Professor professor = (Professor) session.getAttribute("professor");
+
+        List<OfertaDisc> ofertas = ofertaDiscRepository.findByProfessor(professor);
+
         model.addAttribute("cursos", cursos);
+        model.addAttribute("ofertas", ofertas);
 
         return "home-prof";
     }
@@ -147,11 +153,13 @@ public class ProfessorController {
         model.addAttribute("professores", professores);
         model.addAttribute("disciplinas", disciplinas);
 
-        return "formAtualizaOferta";
+        return "formAtualizarOferta";
     }
 
     @PostMapping("/oferta/atualizar")
-    public String atualizarOferta(OfertaDisc oferta, Model model) {
+    public String atualizarOferta(OfertaDisc oferta, Model model, HttpSession session) {
+
+        Professor professorLogado = (Professor) session.getAttribute("professor");
 
         Optional<OfertaDisc> ofertaBanco = ofertaDiscRepository.findById(oferta.getId());
 
@@ -162,18 +170,28 @@ public class ProfessorController {
 
         OfertaDisc ofertaOriginal = ofertaBanco.get();
 
+        if (!ofertaOriginal.getProfessor().getId()
+                .equals(professorLogado.getId())) {
+
+            model.addAttribute("mensagem",
+                    "Você não pode atualizar uma oferta de outro professor!");
+
+            return "redirect:/home-prof";
+        }
+
         OfertaDisc ofertaDuplicada = ofertaDiscRepository.findByProfessorAndDisciplina(
-                oferta.getProfessor(),
+                professorLogado,
                 oferta.getDisciplina());
 
         if (ofertaDuplicada != null &&
                 !ofertaDuplicada.getId().equals(ofertaOriginal.getId())) {
 
-            model.addAttribute("mensagem", "Já existe uma oferta com esse professor e disciplina");
-            return "formAtualizaOferta";
+            model.addAttribute("mensagem",
+                    "Você já possui essa disciplina vinculada!");
+
+            return "redirect:/home-prof";
         }
 
-        ofertaOriginal.setProfessor(oferta.getProfessor());
         ofertaOriginal.setDisciplina(oferta.getDisciplina());
 
         ofertaDiscRepository.save(ofertaOriginal);
@@ -238,6 +256,23 @@ public class ProfessorController {
     public String excluirDisciplina(@PathVariable Long id) {
         disciplinaRepository.deleteById(id);
         return "redirect:/home-prof";
+    }
+
+    @GetMapping("/oferta/{id}/alunos")
+    public String verAlunos(@PathVariable Long id, Model model) {
+
+        Optional<OfertaDisc> ofertaBanco = ofertaDiscRepository.findById(id);
+
+        if (ofertaBanco.isEmpty()) {
+            return "redirect:/home-prof";
+        }
+
+        OfertaDisc oferta = ofertaBanco.get();
+
+        model.addAttribute("oferta", oferta);
+        model.addAttribute("matriculas", oferta.getMatriculas());
+
+        return "alunos-oferta";
     }
 
 }

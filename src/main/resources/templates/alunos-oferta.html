@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alunos matriculados</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Alunos matriculados</h1>
+
+        <h2 th:text="${oferta.disciplina.nome}">
+            Nome da disciplina
+        </h2>
+
+        <div th:if="${matriculas == null or matriculas.isEmpty()}">
+            <p>Nenhum aluno matriculado nesta oferta.</p>
+        </div>
+
+        <div th:each="matricula : ${matriculas}">
+
+            <div class="card-aluno">
+
+                <h3 th:text="${matricula.aluno.nome}">
+                    Nome do aluno
+                </h3>
+
+                <p>
+                    Prontuário:
+                    <span th:text="${matricula.aluno.prontuario}">
+                        Prontuário
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+        <a th:href="@{/home-prof}">
+            Voltar
+        </a>
+
+    </div>
+
+</body>
+
+</html>
