@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luiz.matricula.model.Aluno;
+import com.luiz.matricula.model.Matricula;
 import com.luiz.matricula.model.OfertaDisc;
 import com.luiz.matricula.model.Professor;
 import com.luiz.matricula.repository.AlunoRepository;
+import com.luiz.matricula.repository.MatriculaRepository;
 import com.luiz.matricula.repository.OfertaDiscRepository;
 import com.luiz.matricula.repository.ProfessorRepository;
 
@@ -31,6 +33,9 @@ public class HomeController {
 
     @Autowired
     private OfertaDiscRepository ofertaDiscRepository;
+
+    @Autowired 
+    private MatriculaRepository matriculaRepository;
 
     @GetMapping("/")
     public String paginaInicial() {
@@ -77,9 +82,30 @@ public class HomeController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "homePage";
+    }
+
+    @GetMapping("/home-aluno")
+    public String homeAluno(Model model, HttpSession session,
+            @RequestParam(required = false) String mensagem) {
+
+        Aluno aluno = (Aluno) session.getAttribute("aluno");
+
+        if (aluno == null) {
+            return "redirect:/login";
+        }
+
+        List<OfertaDisc> ofertas = ofertaDiscRepository.findAll();
+
+        List<Matricula> matriculas = matriculaRepository.findByAluno(aluno);
+
+        model.addAttribute("ofertas", ofertas);
+        model.addAttribute("matriculas", matriculas);
+        model.addAttribute("mensagem", mensagem);
+
+        return "home-aluno";
     }
 
 }

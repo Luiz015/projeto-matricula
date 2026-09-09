@@ -153,6 +153,6 @@ public class AlunoController {
 
         matriculaRepository.save(matricula);
 
-        return "redirect:/home-aluno";
+        return "redirect:/home-aluno?mensagem=Matr%C3%ADcula%20realizada%20com%20sucesso!";
     }
 }

@@ -20,11 +20,19 @@
             </div>
 
             <nav>
-                <a href="/">Sair</a>
+                <a th:href="@{/logout}">Sair</a>
             </nav>
         </header>
 
         <main>
+
+            <!-- Mensagem -->
+            <div th:if="${mensagem != null}">
+                <p th:text="${mensagem}"></p>
+            </div>
+
+
+            <!-- OFERTAS DE DISCIPLINAS -->
 
             <h2>Ofertas de Disciplinas</h2>
 
@@ -77,9 +85,59 @@
 
             </div>
 
+
+            <!-- MINHAS MATRÍCULAS -->
+
+            <h2>Minhas Matrículas</h2>
+
+            <div th:if="${matriculas == null or matriculas.isEmpty()}">
+                <p>Você ainda não está matriculado em nenhuma disciplina.</p>
+            </div>
+
+            <div class="ofertas">
+
+                <div class="card-oferta" th:each="matricula : ${matriculas}">
+
+                    <h3 th:text="${matricula.ofertaDisc.disciplina.nome}">
+                        Nome da disciplina
+                    </h3>
+
+                    <p>
+                        Área:
+                        <span th:text="${matricula.ofertaDisc.disciplina.area}">
+                            Área
+                        </span>
+                    </p>
+
+                    <p>
+                        Carga Horária:
+                        <span th:text="${matricula.ofertaDisc.disciplina.cargaHoraria}">
+                            Carga horária
+                        </span>
+                    </p>
+
+                    <p>
+                        Professor:
+                        <span th:text="${matricula.ofertaDisc.professor.nome}">
+                            Professor
+                        </span>
+                    </p>
+
+                    <p>
+                        Curso:
+                        <span th:text="${matricula.curso.nome}">
+                            Curso
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
         </main>
 
     </div>
 
 </body>
 </html>
+
